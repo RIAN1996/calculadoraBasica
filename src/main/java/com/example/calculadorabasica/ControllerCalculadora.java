@@ -1,5 +1,6 @@
 package com.example.calculadorabasica;
 
+import com.example.calculadorabasica.Modelo.operaciones;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -72,17 +73,64 @@ public class ControllerCalculadora implements Initializable {
     @FXML
     private TextField idTextNum;
 
+    //variables
+    public Button[] numbersButtons = new Button[10];
+    public double num1 = 0, num2 = 0, result = 0;
+    public String operation = "";
+
+    operaciones op = new operaciones(num1,num2);
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        numbersButtons[0] = buttonZero;
+        numbersButtons[1] = buttonOne;
+        numbersButtons[2] = buttonTwo;
+        numbersButtons[3] = buttonTrhee;
+        numbersButtons[4] = buttonFour;
+        numbersButtons[5] = buttonFive;
+        numbersButtons[6] = buttonSix;
+        numbersButtons[7] = buttonSeven;
+        numbersButtons[8] = buttonEigth;
+        numbersButtons[9] = buttonNine;
     }
 
 
 
+    //Metodo 
     @FXML
-    void buttonOn(ActionEvent event) {
+    void buttonOn(ActionEvent actionEvent) {
+        for (int i = 0; i < 10; i++) {
+            if (actionEvent.getSource() == numbersButtons[i]) {
+                idTextNum.setText(idTextNum.getText().concat(String.valueOf(i)));
+            }
+        }
+        if (actionEvent.getSource() == buttonDec) {
+            idTextNum.setText(idTextNum.getText().concat("."));
+
+        } else if (actionEvent.getSource() == buttonAdd) {
+            num1 = Double.parseDouble(idTextNum.getText());
+            operation = "+";
+            idTextNum.setText("");
+
+        }else if(actionEvent.getSource() == buttonSub){
+            num1 = Double.parseDouble(idTextNum.getText());
+            operation = "-";
+            idTextNum.setText("");
+
+        }else if(actionEvent.getSource() == buttonMult){
+            num1 = Double.parseDouble(idTextNum.getText());
+            operation = "*";
+            idTextNum.setText("");
+
+        }else if(actionEvent.getSource() == buttonDiv){
+            num1 = Double.parseDouble(idTextNum.getText());
+            operation = "/";
+            idTextNum.setText("");
+
+        }
 
     }
-
-
+    
 }
