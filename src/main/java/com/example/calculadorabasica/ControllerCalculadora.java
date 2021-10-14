@@ -48,9 +48,6 @@ public class ControllerCalculadora implements Initializable {
     private Button buttonNine;
 
     @FXML
-    private AnchorPane buttonOn;
-
-    @FXML
     private Button buttonOne;
 
     @FXML
