@@ -154,6 +154,12 @@ public class ControllerCalculadora implements Initializable {
             num1= result;
         }
 
+        if(actionEvent.getSource() == buttonClear){
+            idTextNum.setText("");
+            num1 = 0;
+            num2 = 0;
+        }
+
 
     }
     
