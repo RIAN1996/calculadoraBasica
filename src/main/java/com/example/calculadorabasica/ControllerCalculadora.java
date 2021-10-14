@@ -4,6 +4,7 @@ import com.example.calculadorabasica.Modelo.operaciones;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -70,6 +71,7 @@ public class ControllerCalculadora implements Initializable {
     @FXML
     private Button buttonZero;
 
+    //Metodo
     @FXML
     private TextField idTextNum;
 
@@ -95,7 +97,6 @@ public class ControllerCalculadora implements Initializable {
         numbersButtons[8] = buttonEigth;
         numbersButtons[9] = buttonNine;
     }
-
 
 
     //Metodo 
@@ -129,7 +130,30 @@ public class ControllerCalculadora implements Initializable {
             operation = "/";
             idTextNum.setText("");
 
+        }else if(actionEvent.getSource() == buttonEqu){
+            num2 = Double.parseDouble(idTextNum.getText());
+
+            switch (operation) {
+                case "+" -> result = op.add(num1, num2);
+                case "-" -> result = op.sub(num1, num2);
+                case "*" -> result = op.moult(num1, num2);
+                case "/" -> {
+                    if (num2 != 0){
+                        result = op.div(num1, num2);
+                    }else {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Info");
+                        alert.setContentText("No puedes divider entre cero");
+                        alert.setHeaderText(null);
+                        alert.showAndWait();
+                        num1= result;
+                    }
+                }
+            }
+            idTextNum.setText(String.valueOf(result));
+            num1= result;
         }
+
 
     }
     
